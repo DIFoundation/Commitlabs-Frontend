@@ -12,6 +12,7 @@
     "@stellar/freighter-api": "^1.6.0",
     "@stellar/stellar-sdk": "^11.2.2",
     "@tailwindcss/postcss": "^4.1.18",
+    "framer-motion": "^12.29.2",
     "lucide-react": "^0.563.0",
     "next": "^14.0.0",
     "postcss": "^8.5.6",
