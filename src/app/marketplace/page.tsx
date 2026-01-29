@@ -1,27 +1,45 @@
 'use client'
 
 import Link from 'next/link'
+import { MarketplaceGrid } from '@/components/MarketplaceGrid'
 import styles from './page.module.css'
 
-// TODO: Replace with actual data from contracts
 const mockListings = [
   {
-    id: '1',
-    type: 'Balanced',
-    amount: '50000',
-    remainingDays: 45,
-    maxLoss: 8,
-    currentYield: '5.2%',
-    complianceScore: 92,
+    id: '001',
+    type: 'Safe' as const,
+    score: 95,
+    amount: '$50,000',
+    duration: '25 days',
+    yield: '5.2%',
+    maxLoss: '2%',
+    owner: '0x742d35Cc6634C0532925a3b844Bc454e4438f44e',
+    price: '$52,000',
+    forSale: true,
   },
   {
-    id: '2',
-    type: 'Safe',
-    amount: '25000',
-    remainingDays: 20,
-    maxLoss: 2,
-    currentYield: '3.1%',
-    complianceScore: 100,
+    id: '002',
+    type: 'Balanced' as const,
+    score: 88,
+    amount: '$100,000',
+    duration: '45 days',
+    yield: '12.5%',
+    maxLoss: '8%',
+    owner: '0x8626f6940E2eb28930eFb4CeF49B2d1F2C9C1199',
+    price: '$105,000',
+    forSale: true,
+  },
+  {
+    id: '003',
+    type: 'Aggressive' as const,
+    score: 76,
+    amount: '$250,000',
+    duration: '80 days',
+    yield: '18.7%',
+    maxLoss: '100%',
+    owner: '0xdD2FD4581271e230360230F9337D5c0430Bf44C0',
+    price: '$—',
+    forSale: false,
   },
 ]
 
@@ -36,70 +54,11 @@ export default function Marketplace() {
         <p>Browse and trade Commitment NFTs</p>
       </header>
 
-      <div className={styles.marketplaceContent}>
-        <div className={styles.filters}>
-          <h2>Filters</h2>
-          <div className={styles.filterGroup}>
-            <label htmlFor="type-filter">Type</label>
-            <select id="type-filter">
-              <option>All</option>
-              <option>Safe</option>
-              <option>Balanced</option>
-              <option>Aggressive</option>
-            </select>
-          </div>
-          <div className={styles.filterGroup}>
-            <label htmlFor="compliance-filter">Min Compliance Score</label>
-            <input id="compliance-filter" type="number" min="0" max="100" defaultValue="80" />
-          </div>
-        </div>
-
-        <div className={styles.listings}>
-          {mockListings.length === 0 ? (
-            <div className={styles.emptyState}>
-              <p>No commitments available in the marketplace.</p>
-            </div>
-          ) : (
-            mockListings.map((listing) => (
-              <div key={listing.id} className={styles.listingCard}>
-                <div className={styles.listingHeader}>
-                  <h3>{listing.type} Commitment</h3>
-                  <span className={styles.complianceBadge}>
-                    Score: {listing.complianceScore}
-                  </span>
-                </div>
-                <div className={styles.listingBody}>
-                  <div className={styles.listingMetric}>
-                    <span>Amount:</span>
-                    <strong>{listing.amount} XLM</strong>
-                  </div>
-                  <div className={styles.listingMetric}>
-                    <span>Remaining:</span>
-                    <strong>{listing.remainingDays} days</strong>
-                  </div>
-                  <div className={styles.listingMetric}>
-                    <span>Max Loss:</span>
-                    <strong>{listing.maxLoss}%</strong>
-                  </div>
-                  <div className={styles.listingMetric}>
-                    <span>Current Yield:</span>
-                    <strong>{listing.currentYield}</strong>
-                  </div>
-                </div>
-                <div className={styles.listingActions}>
-                  <button className={styles.viewButton} aria-label={`View details for ${listing.type} commitment`}>
-                    View Details
-                  </button>
-                  <button className={styles.tradeButton} aria-label={`Trade NFT for ${listing.type} commitment`}>
-                    Trade NFT
-                  </button>
-                </div>
-              </div>
-            ))
-          )}
-        </div>
-      </div>
+      <section className={styles.gridShell} aria-label="Marketplace listings">
+        <MarketplaceGrid items={mockListings} />
+      </section>
     </main>
   )
 }
+
 

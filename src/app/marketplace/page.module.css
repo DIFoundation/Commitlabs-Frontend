@@ -1,13 +1,13 @@
 .container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 2.5rem 2rem 3rem;
   min-height: 100vh;
 }
 
 .header {
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 2.5rem;
   color: white;
 }
 
@@ -25,7 +25,7 @@
 
 .header h1 {
   font-size: 2.5rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.6rem;
 }
 
 .header p {
@@ -33,142 +33,7 @@
   opacity: 0.9;
 }
 
-.marketplaceContent {
-  display: grid;
-  grid-template-columns: 250px 1fr;
-  gap: 2rem;
-}
-
-.filters {
-  background: rgba(255, 255, 255, 0.95);
-  padding: 1.5rem;
-  border-radius: 12px;
-  height: fit-content;
-}
-
-.filters h2 {
-  font-size: 1.2rem;
-  margin-bottom: 1rem;
-  color: #333;
-}
-
-.filterGroup {
-  margin-bottom: 1.5rem;
-}
-
-.filterGroup label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 500;
-  color: #333;
-}
-
-.filterGroup select,
-.filterGroup input {
-  width: 100%;
-  padding: 0.5rem;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-}
-
-.listings {
-  display: grid;
-  gap: 1.5rem;
-}
-
-.emptyState {
-  text-align: center;
-  padding: 4rem 2rem;
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 12px;
-  color: #666;
-}
-
-.listingCard {
-  background: rgba(255, 255, 255, 0.95);
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.listingHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1.5rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid #eee;
-}
-
-.listingHeader h3 {
-  font-size: 1.3rem;
-  color: #333;
-}
-
-.complianceBadge {
-  padding: 0.5rem 1rem;
-  background: #d4edda;
-  color: #155724;
-  border-radius: 20px;
-  font-size: 0.9rem;
-  font-weight: 500;
-}
-
-.listingBody {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-}
-
-.listingMetric {
-  display: flex;
-  flex-direction: column;
-}
-
-.listingMetric span {
-  font-size: 0.9rem;
-  color: #666;
-  margin-bottom: 0.25rem;
-}
-
-.listingMetric strong {
-  font-size: 1.1rem;
-  color: #333;
-}
-
-.listingActions {
-  display: flex;
-  gap: 1rem;
-}
-
-.viewButton {
-  padding: 0.75rem 1.5rem;
-  background: #667eea;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: background 0.3s;
-}
-
-.viewButton:hover {
-  background: #5568d3;
-}
-
-.tradeButton {
-  padding: 0.75rem 1.5rem;
-  background: #28a745;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: background 0.3s;
-}
-
-.tradeButton:hover {
-  background: #218838;
+.gridShell {
+  margin-top: 0.5rem;
 }
 
