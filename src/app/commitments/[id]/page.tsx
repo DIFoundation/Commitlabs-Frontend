@@ -2,10 +2,21 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { notFound } from 'next/navigation';
 import CommitmentHealthMetrics from '@/components/dashboard/CommitmentHealthMetrics';
 import CommitmentDetailAllocationConstraints from '@/components/CommitmentDetailAllocationConstraints';
 import { CommitmentDetailNftSection } from '@/components/dashboard/CommitmentDetailNftSection';
+import { CommitmentDetailParameters } from '@/components/CommitmentDetailParameters/CommitmentDetailParameters';
+import styles from './page.module.css';
 
+// TODO: Replace with actual data from contracts; keep in sync with list page mock data
+const MOCK_COMMITMENTS: Record<
+  string,
+  { id: string; type: string; duration: number; maxLoss: number; earlyExitPenaltyPercent?: number }
+> = {
+  '1': { id: '1', type: 'Balanced', duration: 60, maxLoss: 8, earlyExitPenaltyPercent: 3 },
+  '2': { id: '2', type: 'Safe', duration: 30, maxLoss: 2, earlyExitPenaltyPercent: 3 },
+}
 
 // Mock data for health metrics
 const MOCK_COMPLIANCE_DATA = [
@@ -26,11 +37,22 @@ const MOCK_NFT_DATA = {
     mintDate: 'Jan 10, 2026',
 };
 
+function getCommitmentById(id: string) {
+  return MOCK_COMMITMENTS[id] ?? null
+}
+
 export default function CommitmentDetailPage({
     params,
 }: {
     params: { id: string };
 }) {
+    const commitment = getCommitmentById(params.id)
+    if (!commitment) notFound()
+
+    const durationLabel = `${commitment.duration} days`
+    const maxLossLabel = `${commitment.maxLoss}%`
+    const commitmentTypeLabel = commitment.type
+    const earlyExitPenaltyLabel = `${commitment.earlyExitPenaltyPercent ?? 3}%`
     
     const handleCopy = async (text: string, label: string) => {
         if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -48,23 +70,24 @@ export default function CommitmentDetailPage({
     const handleTransfer = () => console.log('Transfer clicked');
 
     return (
-        <main className="min-h-screen bg-[#050505] text-[#f5f5f7] p-4 sm:p-8 lg:p-12">
+        <main id="main-content" className="min-h-screen bg-[#050505] text-[#f5f5f7] p-4 sm:p-8 lg:p-12">
             <div className="max-w-7xl mx-auto space-y-8">
                 
                 <header className="flex flex-col gap-4">
                     <Link
                         href="/commitments"
                         className="text-[#666] hover:text-[#0ff0fc] transition-colors text-sm w-fit"
+                        aria-label="Back to My Commitments"
                     >
-                        ← Back to Commitments
+                        ← Back to My Commitments
                     </Link>
                     <div className="flex items-center justify-between">
                         <div>
                             <h1 className="text-3xl sm:text-4xl font-bold bg-clip-text text-transparent bg-linear-to-b from-white to-[#99a1af]">
-                                Commitment #{params.id}
+                                {commitment.type} Commitment #{commitment.id}
                             </h1>
                             <p className="text-[#99a1af] mt-2">
-                                Active • Balanced Strategy
+                                Active • {commitment.type} Strategy
                             </p>
                         </div>
                         <div className="hidden sm:block">
@@ -74,6 +97,13 @@ export default function CommitmentDetailPage({
                         </div>
                     </div>
                 </header>
+
+                <CommitmentDetailParameters
+                    durationLabel={durationLabel}
+                    maxLossLabel={maxLossLabel}
+                    commitmentTypeLabel={commitmentTypeLabel}
+                    earlyExitPenaltyLabel={earlyExitPenaltyLabel}
+                />
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
                     <div className="lg:col-span-2 space-y-8">

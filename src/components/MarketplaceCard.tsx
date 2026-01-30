@@ -48,9 +48,9 @@ function TypeIcon({ type }: { type: CommitmentType }) {
         <path
           d="M23.3292 15.164C23.3292 20.9962 19.2466 23.9124 14.3942 25.6037C14.1401 25.6898 13.8641 25.6857 13.6127 25.5921C8.74859 23.9124 4.66602 20.9962 4.66602 15.164V6.99884C4.66602 6.68948 4.78891 6.39279 5.00766 6.17404C5.22641 5.95529 5.5231 5.83239 5.83247 5.83239C8.16536 5.83239 11.0815 4.43265 13.1111 2.65965C13.3582 2.44852 13.6726 2.33252 13.9976 2.33252C14.3226 2.33252 14.637 2.44852 14.8841 2.65965C16.9254 4.44432 19.8299 5.83239 22.1628 5.83239C22.4721 5.83239 22.7688 5.95529 22.9876 6.17404C23.2063 6.39279 23.3292 6.68948 23.3292 6.99884V15.164Z"
           stroke="#05DF72"
-          stroke-width="2.3329"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="2.3329"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
       </svg>
     );
@@ -69,16 +69,16 @@ function TypeIcon({ type }: { type: CommitmentType }) {
         <path
           d="M25.662 8.16504L15.7472 18.0799L9.91493 12.2476L2.33301 19.8295"
           stroke="#51A2FF"
-          stroke-width="2.3329"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="2.3329"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
         <path
           d="M18.6631 8.16504H25.6618V15.1637"
           stroke="#51A2FF"
-          stroke-width="2.3329"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="2.3329"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
       </svg>
     );
@@ -112,20 +112,20 @@ function ViewIcon() {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g clip-path="url(#clip0_158_2158)">
+      <g clipPath="url(#clip0_158_2158)">
         <path
           d="M1.37467 8.23122C1.31912 8.08156 1.31912 7.91693 1.37467 7.76727C1.91575 6.45532 2.83419 5.33356 4.01357 4.54422C5.19294 3.75488 6.58014 3.3335 7.99929 3.3335C9.41844 3.3335 10.8056 3.75488 11.985 4.54422C13.1644 5.33356 14.0828 6.45532 14.6239 7.76727C14.6795 7.91693 14.6795 8.08156 14.6239 8.23122C14.0828 9.54317 13.1644 10.6649 11.985 11.4543C10.8056 12.2436 9.41844 12.665 7.99929 12.665C6.58014 12.665 5.19294 12.2436 4.01357 11.4543C2.83419 10.6649 1.91575 9.54317 1.37467 8.23122Z"
           stroke="white"
-          stroke-width="1.33319"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="1.33319"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
         <path
           d="M7.99881 9.99908C9.10326 9.99908 9.99859 9.10374 9.99859 7.99929C9.99859 6.89485 9.10326 5.99951 7.99881 5.99951C6.89436 5.99951 5.99902 6.89485 5.99902 7.99929C5.99902 9.10374 6.89436 9.99908 7.99881 9.99908Z"
           stroke="white"
-          stroke-width="1.33319"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="1.33319"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
       </g>
       <defs>
@@ -143,16 +143,16 @@ function DollarSignIcon() {
       <path
         d="M7.99902 1.33301V14.6649"
         stroke="#0FF0FC"
-        stroke-width="1.33319"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.33319"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M11.3325 3.33301H6.33308C5.71431 3.33301 5.12088 3.57881 4.68334 4.01635C4.24581 4.45389 4 5.04732 4 5.66609C4 6.28486 4.24581 6.87829 4.68334 7.31582C5.12088 7.75336 5.71431 7.99917 6.33308 7.99917H9.66605C10.2848 7.99917 10.8783 8.24497 11.3158 8.68251C11.7533 9.12005 11.9991 9.71348 11.9991 10.3322C11.9991 10.951 11.7533 11.5444 11.3158 11.982C10.8783 12.4195 10.2848 12.6653 9.66605 12.6653H4"
         stroke="#0FF0FC"
-        stroke-width="1.33319"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.33319"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );
@@ -270,13 +270,13 @@ export function MarketplaceCard({
               aria-label="Price"
             >
               <div className="text-[12px] text-white/55 mb-1.5">Price</div>
-              <div className="text-[32px] font-[780] tracking-[0.02em] text-white">
+              <div className="text-[24px] xl:text-[32px] font-[780] tracking-[0.02em] text-white">
                 {price}
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 gap-2 xl:gap-3">
               <Link
-                className="h-11 rounded-[14px] inline-flex items-center justify-center gap-2.5 font-[650] tracking-[0.01em] select-none border border-[rgba(255,255,255,0.16)] text-white/90 bg-[rgba(255,255,255,0.04)] transition-[background,border-color] duration-[160ms] ease-[ease] hover:bg-[rgba(255,255,255,0.08)] hover:border-[rgba(255,255,255,0.22)]"
+                className="h-12 text-sm xl:text-base rounded-[14px] inline-flex items-center justify-center gap-1 xl:gap-2.5 font-[650] tracking-[0.01em] select-none border border-[rgba(255,255,255,0.16)] text-white/90 bg-[rgba(255,255,255,0.04)] transition-[background,border-color] duration-[160ms] ease-[ease] hover:bg-[rgba(255,255,255,0.08)] hover:border-[rgba(255,255,255,0.22)]"
                 href={resolvedViewHref}
                 aria-label={`View ${id}`}
               >
@@ -285,7 +285,7 @@ export function MarketplaceCard({
               </Link>
 
               <Link
-                className="h-11 rounded-[14px] inline-flex items-center justify-center gap-2.5 font-[650] tracking-[0.01em] select-none text-[#0FF0FC] bg-[#0FF0FC1A] border-[0.56px] border-[#0FF0FC66] transition-[transform,filter] duration-[160ms] ease-[ease] hover:brightness-105 hover:-translate-y-px"
+                className="h-12 text-sm xl:text-base rounded-[14px] inline-flex items-center justify-center gap-1 xl:gap-2.5 font-[650] tracking-[0.01em] select-none text-[#0FF0FC] bg-[#0FF0FC1A] border-[0.56px] border-[#0FF0FC66] transition-[transform,filter] duration-[160ms] ease-[ease] hover:brightness-105 hover:-translate-y-px"
                 href={resolvedTradeHref}
                 aria-label={`Trade ${id}`}
               >
@@ -296,7 +296,7 @@ export function MarketplaceCard({
         ) : (
           <>
             <div
-              className="h-11 rounded-[14px] inline-flex items-center justify-center gap-2.5 font-[650] tracking-[0.01em] select-none bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.10)] text-white/45 pointer-events-none"
+              className="h-12 rounded-[14px] inline-flex items-center justify-center gap-2.5 font-[650] tracking-[0.01em] select-none bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.10)] text-white/45 pointer-events-none"
               aria-disabled="true"
             >
               Not for sale
