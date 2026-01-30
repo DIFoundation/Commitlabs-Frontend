@@ -76,7 +76,7 @@ export default function MyCommitments() {
 
   return (
     <main id="main-content">
-      <MyCommitmentsHeader
+      <MyCommitmentsHeader 
         onBack={() => router.push('/')}
         onCreateNew={() => router.push('/create')}
       />
@@ -128,11 +128,7 @@ export default function MyCommitments() {
                 </div>
 
                 <div className={styles.cardActions}>
-                  <button
-                    className={styles.actionButton}
-                    aria-label={`View details for ${commitment.type} commitment`}
-                    onClick={() => router.push(`/commitments/${commitment.id}`)}
-                  >
+                  <button className={styles.actionButton} aria-label={`View details for ${commitment.type} commitment`}>
                     View Details
                   </button>
                   <button className={styles.actionButton} aria-label={`View attestations for ${commitment.type} commitment`}>
