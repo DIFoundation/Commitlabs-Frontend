@@ -3,6 +3,8 @@ import CommitmentJourney from '@/components/CommitmentJourney/CommitmentJourney'
 import { HeroSection } from '@/components/landing-page/sections/HeroSection'
 import { ProblemSection } from '@/components/landing-page/sections/ProblemSection'
 import React from 'react'
+import ImpactSection from '@/components/ImpactSection'
+import Footer from '@/components/landing-page/Footer'
 
 export default function Home() {
   return (
@@ -12,7 +14,7 @@ export default function Home() {
       <CommitmentJourney />
       <ImpactSection />
       <SolutionSection />
-      </main>
+
       <Footer />
     </div>
 
