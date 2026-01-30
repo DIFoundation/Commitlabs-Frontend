@@ -10,7 +10,6 @@ import CreateCommitmentStepReview from '@/components/CreateCommitmentStepReview'
 import CommitmentCreatedModal from '@/components/modals/Commitmentcreatedmodal'
 
 type CommitmentType = 'safe' | 'balanced' | 'aggressive'
-type Step = 1 | 2 | 3
 
 // Generate a random commitment ID (in production, this comes from the blockchain)
 function generateCommitmentId(): string {
@@ -211,7 +210,6 @@ export default function CreateCommitment() {
 
   return (
     <>
-      {/* Step 1 - Select Type */}
       {step === 1 && (
         <CreateCommitmentStepSelectType
           selectedType={selectedType}
@@ -221,10 +219,7 @@ export default function CreateCommitment() {
         />
       )}
 
-  // Render Step 2 - Configure
-  if (currentStep === 2) {
-    return (
-      <>
+      {step === 2 && (
         <main id="main-content" className={styles.container}>
           {/* Header */}
           <header className={styles.header}>
@@ -289,10 +284,8 @@ export default function CreateCommitment() {
             maxLossWarning={maxLossWarning}
           />
         </main>
-      </>
-    )
-  }
-      {/* Step 3 - Review */}
+      )}
+
       {step === 3 && selectedType && (
         <CreateCommitmentStepReview
           {...getMockData()}
