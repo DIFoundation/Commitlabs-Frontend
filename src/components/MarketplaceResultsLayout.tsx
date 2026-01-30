@@ -26,7 +26,7 @@ export function MarketplaceResultsLayout({
   const isLastPage = currentPage >= totalPages;
 
   return (
-    <section className="mt-6 flex flex-col gap-7" aria-label="Marketplace results">
+    <section className="mt-0 pt-0 flex flex-col gap-8" aria-label="Marketplace results">
       <div className="flex items-center justify-between gap-6 flex-wrap max-[720px]:items-start">
         <p className="text-[0.95rem] text-white/65 tracking-[0.2px]">
           <span className="text-white/90 font-semibold">{totalCount}</span>{" "}
@@ -39,7 +39,7 @@ export function MarketplaceResultsLayout({
         >
           <button
             type="button"
-            className={`w-[42px] h-9 rounded-xl border inline-flex items-center justify-center bg-[rgba(8,12,16,0.9)] transition-[border-color,box-shadow,background] duration-200 ease-[ease] hover:border-[rgba(0,212,255,0.4)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[rgba(0,212,255,0.6)] ${
+            className={`w-[48px] h-10 rounded-xl border inline-flex items-center justify-center bg-[rgba(8,12,16,0.9)] transition-[border-color,box-shadow,background] duration-200 ease-[ease] hover:border-[rgba(0,212,255,0.4)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[rgba(0,212,255,0.6)] ${
               viewMode === "grid"
                 ? "border-[rgba(0,212,255,0.6)] shadow-[0_0_12px_rgba(0,212,255,0.35)] bg-[rgba(7,14,18,0.95)]"
                 : "border-[rgba(255,255,255,0.08)]"
@@ -51,7 +51,7 @@ export function MarketplaceResultsLayout({
               <svg
                 viewBox="0 0 20 20"
                 fill="none"
-                className={`w-[18px] h-[18px] stroke-[rgba(0,212,255,0.9)] fill-[rgba(0,212,255,0.9)] ${
+                className={`w-[20px] h-[20px] stroke-[rgba(0,212,255,0.9)] fill-[rgba(0,212,255,0.9)] ${
                   viewMode === "grid" ? "opacity-100" : "opacity-65"
                 }`}
               >
@@ -64,7 +64,7 @@ export function MarketplaceResultsLayout({
           </button>
           <button
             type="button"
-            className={`w-[42px] h-9 rounded-xl border inline-flex items-center justify-center bg-[rgba(8,12,16,0.9)] transition-[border-color,box-shadow,background] duration-200 ease-[ease] hover:border-[rgba(0,212,255,0.4)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[rgba(0,212,255,0.6)] ${
+            className={`w-[48px] h-10 rounded-xl border inline-flex items-center justify-center bg-[rgba(8,12,16,0.9)] transition-[border-color,box-shadow,background] duration-200 ease-[ease] hover:border-[rgba(0,212,255,0.4)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[rgba(0,212,255,0.6)] ${
               viewMode === "list"
                 ? "border-[rgba(0,212,255,0.6)] shadow-[0_0_12px_rgba(0,212,255,0.35)] bg-[rgba(7,14,18,0.95)]"
                 : "border-[rgba(255,255,255,0.08)]"
@@ -76,7 +76,7 @@ export function MarketplaceResultsLayout({
               <svg
                 viewBox="0 0 20 20"
                 fill="none"
-                className={`w-[18px] h-[18px] stroke-[rgba(0,212,255,0.9)] fill-[rgba(0,212,255,0.9)] ${
+                className={`w-[20px] h-[20px] stroke-[rgba(0,212,255,0.9)] fill-[rgba(0,212,255,0.9)] ${
                   viewMode === "list" ? "opacity-100" : "opacity-65"
                 }`}
               >
@@ -89,21 +89,14 @@ export function MarketplaceResultsLayout({
         </div>
       </div>
 
-      <div className="flex flex-col gap-5">
-        {viewMode === "list" ? (
-          <div className="rounded-[18px] border border-[rgba(255,255,255,0.12)] bg-[rgba(8,12,16,0.9)] px-6 py-10 text-center text-white/70 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.04)]">
-            List view is coming soon. Switch back to grid view to browse
-            commitments.
-          </div>
-        ) : (
-          children
-        )}
+      <div className="flex flex-col gap-6">
+        {children}
       </div>
 
-      <div className="flex items-center justify-center gap-3 flex-wrap max-[720px]:gap-2">
+      <div className="flex items-center justify-center gap-3 flex-wrap mt-4">
         <button
           type="button"
-          className={`rounded-full border px-4 py-2 text-[0.9rem] bg-[rgba(8,12,16,0.95)] text-white/90 transition-[border-color,box-shadow,background] duration-200 ease-[ease] hover:border-[rgba(0,212,255,0.45)] hover:shadow-[0_0_10px_rgba(0,212,255,0.2)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[rgba(0,212,255,0.6)] max-[720px]:px-3 max-[720px]:py-[0.5rem] ${
+          className={`rounded-xl border px-5 py-3 text-[0.95rem] bg-[rgba(8,12,16,0.95)] text-white/90 transition-[border-color,box-shadow,background] duration-200 ease-[ease] hover:border-[rgba(0,212,255,0.45)] hover:shadow-[0_0_10px_rgba(0,212,255,0.2)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[rgba(0,212,255,0.6)] active:scale-95 ${
             isFirstPage
               ? "opacity-40 cursor-not-allowed border-transparent"
               : "border-[rgba(255,255,255,0.15)]"
@@ -119,7 +112,7 @@ export function MarketplaceResultsLayout({
             <button
               key={page}
               type="button"
-              className={`rounded-full border px-4 py-2 text-[0.9rem] bg-[rgba(8,12,16,0.95)] transition-[border-color,box-shadow,background,color] duration-200 ease-[ease] hover:border-[rgba(0,212,255,0.45)] hover:shadow-[0_0_10px_rgba(0,212,255,0.2)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[rgba(0,212,255,0.6)] max-[720px]:px-3 max-[720px]:py-[0.5rem] ${
+              className={`rounded-xl border min-w-[44px] h-11 px-3 py-2 text-[0.95rem] bg-[rgba(8,12,16,0.95)] transition-[border-color,box-shadow,background,color] duration-200 ease-[ease] hover:border-[rgba(0,212,255,0.45)] hover:shadow-[0_0_10px_rgba(0,212,255,0.2)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[rgba(0,212,255,0.6)] active:scale-95 ${
                 page === currentPage
                   ? "border-[rgba(0,212,255,0.7)] bg-[rgba(0,212,255,0.18)] shadow-[0_0_12px_rgba(0,212,255,0.35)] text-[#00d4ff] font-semibold"
                   : "border-[rgba(255,255,255,0.15)] text-white/90"
@@ -134,7 +127,7 @@ export function MarketplaceResultsLayout({
 
         <button
           type="button"
-          className={`rounded-full border px-4 py-2 text-[0.9rem] bg-[rgba(8,12,16,0.95)] text-white/90 transition-[border-color,box-shadow,background] duration-200 ease-[ease] hover:border-[rgba(0,212,255,0.45)] hover:shadow-[0_0_10px_rgba(0,212,255,0.2)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[rgba(0,212,255,0.6)] max-[720px]:px-3 max-[720px]:py-[0.5rem] ${
+          className={`rounded-xl border px-5 py-3 text-[0.95rem] bg-[rgba(8,12,16,0.95)] text-white/90 transition-[border-color,box-shadow,background] duration-200 ease-[ease] hover:border-[rgba(0,212,255,0.45)] hover:shadow-[0_0_10px_rgba(0,212,255,0.2)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[rgba(0,212,255,0.6)] active:scale-95 ${
             isLastPage
               ? "opacity-40 cursor-not-allowed border-transparent"
               : "border-[rgba(255,255,255,0.15)]"
