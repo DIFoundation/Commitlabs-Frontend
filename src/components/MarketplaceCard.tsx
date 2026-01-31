@@ -1,3 +1,7 @@
+'use client';
+
+import { useState } from "react";
+import { CommitmentDetailsModal } from "./modals/CommitmentDetailsModal";
 import Link from "next/link";
 
 export type CommitmentType = "Safe" | "Balanced" | "Aggressive";
@@ -172,6 +176,8 @@ export function MarketplaceCard({
   viewHref,
   tradeHref,
 }: MarketplaceCardProps) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const clampedScore = clampScore(score);
   const cardBorderClass =
     type === "Safe"
@@ -274,15 +280,15 @@ export function MarketplaceCard({
                 {price}
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-2 xl:gap-3">
-              <Link
-                className="h-12 text-sm xl:text-base rounded-[14px] inline-flex items-center justify-center gap-1 xl:gap-2.5 font-[650] tracking-[0.01em] select-none border border-[rgba(255,255,255,0.16)] text-white/90 bg-[rgba(255,255,255,0.04)] transition-[background,border-color] duration-[160ms] ease-[ease] hover:bg-[rgba(255,255,255,0.08)] hover:border-[rgba(255,255,255,0.22)]"
-                href={resolvedViewHref}
+            <div className="grid grid-cols-2 gap-3">
+              <button
+                className="h-11 rounded-[14px] inline-flex items-center justify-center gap-2.5 font-[650] tracking-[0.01em] select-none border border-[rgba(255,255,255,0.16)] text-white/90 bg-[rgba(255,255,255,0.04)] transition-[background,border-color] duration-[160ms] ease-[ease] hover:bg-[rgba(255,255,255,0.08)] hover:border-[rgba(255,255,255,0.22)]"
+                onClick={() => setIsModalOpen(true)}
                 aria-label={`View ${id}`}
               >
                 <ViewIcon />
                 View
-              </Link>
+              </button>
 
               <Link
                 className="h-12 text-sm xl:text-base rounded-[14px] inline-flex items-center justify-center gap-1 xl:gap-2.5 font-[650] tracking-[0.01em] select-none text-[#0FF0FC] bg-[#0FF0FC1A] border-[0.56px] border-[#0FF0FC66] transition-[transform,filter] duration-[160ms] ease-[ease] hover:brightness-105 hover:-translate-y-px"
@@ -301,17 +307,52 @@ export function MarketplaceCard({
             >
               Not for sale
             </div>
-            <Link
+            <button
               className="h-11 rounded-[14px] inline-flex items-center justify-center gap-2.5 font-[650] tracking-[0.01em] select-none border border-[rgba(255,255,255,0.16)] text-white/90 bg-[rgba(255,255,255,0.04)] transition-[background,border-color] duration-[160ms] ease-[ease] hover:bg-[rgba(255,255,255,0.08)] hover:border-[rgba(255,255,255,0.22)]"
-              href={resolvedViewHref}
+              onClick={() => setIsModalOpen(true)}
               aria-label={`View ${id}`}
             >
               <ViewIcon />
               View
-            </Link>
+            </button>
           </>
         )}
       </footer>
+
+
+      <CommitmentDetailsModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        typeLabel={`${type} Commitment`}
+        typeVariant={type.toLowerCase() as "safe" | "balanced" | "aggressive"}
+        currentPrice={price}
+        amountCommitted={amount}
+        remainingDuration={duration}
+        currentYield={apy}
+        maxLoss={maxLoss}
+        complianceItems={[
+          {
+            id: "volatility-exposure",
+            label: "Volatility Exposure",
+            statusLabel: "Within limits",
+            statusVariant: "ok",
+          },
+          {
+            id: "fee-generation",
+            label: "Fee Generation",
+            statusLabel: "On track",
+            statusVariant: "ok",
+          },
+          {
+            id: "drawdown-events",
+            label: "Drawdown Events",
+            statusLabel: "None detected",
+            statusVariant: "ok",
+          },
+        ]}
+        TypeIcon={TypeIcon}
+      />
+
     </article>
   );
 }
