@@ -6,10 +6,10 @@ import { useRouter } from 'next/navigation'
 import styles from './page.module.css'
 import CreateCommitmentStepSelectType from '@/components/CreateCommitmentStepSelectType'
 import CreateCommitmentStepConfigure from '@/components/CreateCommitmentStepConfigure'
+import CreateCommitmentStepReview from '@/components/CreateCommitmentStepReview';        
 import CommitmentCreatedModal from '@/components/modals/Commitmentcreatedmodal'
 
 type CommitmentType = 'safe' | 'balanced' | 'aggressive'
-type Step = 1 | 2 | 3
 
 // Generate a random commitment ID (in production, this comes from the blockchain)
 function generateCommitmentId(): string {
@@ -22,16 +22,75 @@ function generateCommitmentId(): string {
 }
 
 export default function CreateCommitment() {
-  const router = useRouter()
-  const [currentStep, setCurrentStep] = useState<Step>(1)
+  const router = useRouter();
+  const [step, setStep] = useState(1);
+  const [selectedType, setSelectedType] = useState<'safe' | 'balanced' | 'aggressive' | null>(null);
   const [commitmentType, setCommitmentType] = useState<CommitmentType>('balanced')
-  const [selectedType, setSelectedType] = useState<'safe' | 'balanced' | 'aggressive' | null>(null)
   const [amount, setAmount] = useState<string>('')
   const [asset, setAsset] = useState<string>('XLM')
   const [durationDays, setDurationDays] = useState<number>(90)
   const [maxLossPercent, setMaxLossPercent] = useState<number>(100)
-  const [showSuccessModal, setShowSuccessModal] = useState(false)
-  const [commitmentId, setCommitmentId] = useState('')
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [commitmentId, setCommitmentId] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Mock data based on selected type
+  const getMockData = () => {
+    switch (selectedType) {
+      case 'safe':
+        return {
+          typeLabel: 'Safe Commitment',
+          amount: '500 XLM',
+          asset: 'XLM',
+          durationDays: 30,
+          maxLossPercent: 2,
+          earlyExitPenalty: '5.00 XLM',
+          estimatedFees: '0.10 XLM',
+          estimatedYield: '5.2% APY',
+          commitmentStart: 'Immediately',
+          commitmentEnd: '2/28/2026'
+        };
+      case 'balanced':
+        return {
+          typeLabel: 'Balanced Commitment',
+          amount: '1000 XLM',
+          asset: 'XLM',
+          durationDays: 60,
+          maxLossPercent: 8,
+          earlyExitPenalty: '20.00 XLM',
+          estimatedFees: '0.50 XLM',
+          estimatedYield: '12.5% APY',
+          commitmentStart: 'Immediately',
+          commitmentEnd: '3/30/2026'
+        };
+      case 'aggressive':
+        return {
+          typeLabel: 'Aggressive Commitment',
+          amount: '2000 XLM',
+          asset: 'XLM',
+          durationDays: 90,
+          maxLossPercent: 100, // Should probably handle "No protection" or similar logic in presentation if needed, but number is simpler
+          earlyExitPenalty: '100.00 XLM',
+          estimatedFees: '1.20 XLM',
+          estimatedYield: '45.0% APY',
+          commitmentStart: 'Immediately',
+          commitmentEnd: '4/30/2026'
+        };
+      default:
+        return {
+          typeLabel: 'Unknown',
+          amount: '0 XLM',
+          asset: 'XLM',
+          durationDays: 0,
+          maxLossPercent: 0,
+          earlyExitPenalty: '0 XLM',
+          estimatedFees: '0 XLM',
+          estimatedYield: '0%',
+          commitmentStart: '-',
+          commitmentEnd: '-'
+        };
+    }
+  };
 
   // Mock available balance - in real app, this would come from wallet/API
   const availableBalance = 10000
@@ -74,22 +133,22 @@ export default function CreateCommitment() {
     setCommitmentType(type)
   }
 
-  const handleStepNext = (type: 'safe' | 'balanced' | 'aggressive') => {
+  const handleNext = (type: 'safe' | 'balanced' | 'aggressive') => {
     console.log('Selected commitment type:', type)
-    setCurrentStep(2)
+    setStep(2)
   }
 
   const handleBack = () => {
-    if (currentStep > 1) {
-      setCurrentStep((currentStep - 1) as Step)
+    if (step > 1) {
+      setStep(step - 1)
     } else {
       router.push('/')
     }
   }
 
   const handleNext = () => {
-    if (currentStep < 3) {
-      setCurrentStep((currentStep + 1) as Step)
+    if (step < 3) {
+      setStep(step + 1)
     }
   }
 
@@ -110,10 +169,22 @@ export default function CreateCommitment() {
     }, 500)
   }
 
+  const handleSubmit = () => {
+    setIsSubmitting(true);
+
+    // Simulate transaction delay
+    setTimeout(() => {
+      setIsSubmitting(false);
+      const newCommitmentId = generateCommitmentId();
+      setCommitmentId(newCommitmentId);
+      setShowSuccessModal(true);
+    }, 2000);
+  };
+
   const handleViewCommitment = () => {
-    const numericId = commitmentId.split('-')[1] || '1'
-    router.push(`/commitments/${numericId}`)
-  }
+    const numericId = commitmentId.split('-')[1] || '1';
+    router.push(`/commitments/${numericId}`);
+  };
 
   const handleCreateAnother = () => {
     setShowSuccessModal(false)
@@ -133,37 +204,22 @@ export default function CreateCommitment() {
   }
 
   const handleViewOnExplorer = () => {
-    const explorerUrl = `https://stellar.expert/explorer/testnet/tx/${commitmentId}`
-    window.open(explorerUrl, '_blank')
-  }
+    const explorerUrl = `https://stellar.expert/explorer/testnet/tx/${commitmentId}`;
+    window.open(explorerUrl, '_blank');
+  };
 
-  // Render Step 1 - Select Type using upstream component
-  if (currentStep === 1) {
-    return (
-      <>
+  return (
+    <>
+      {step === 1 && (
         <CreateCommitmentStepSelectType
           selectedType={selectedType}
           onSelectType={handleSelectType}
           onNext={handleStepNext}
           onBack={handleBack}
         />
+      )}
 
-        <CommitmentCreatedModal
-          isOpen={showSuccessModal}
-          commitmentId={commitmentId}
-          onViewCommitment={handleViewCommitment}
-          onCreateAnother={handleCreateAnother}
-          onClose={handleCloseModal}
-          onViewOnExplorer={handleViewOnExplorer}
-        />
-      </>
-    )
-  }
-
-  // Render Step 2 - Configure
-  if (currentStep === 2) {
-    return (
-      <>
+      {step === 2 && (
         <main id="main-content" className={styles.container}>
           {/* Header */}
           <header className={styles.header}>
@@ -228,74 +284,16 @@ export default function CreateCommitment() {
             maxLossWarning={maxLossWarning}
           />
         </main>
+      )}
 
-        <CommitmentCreatedModal
-          isOpen={showSuccessModal}
-          commitmentId={commitmentId}
-          onViewCommitment={handleViewCommitment}
-          onCreateAnother={handleCreateAnother}
-          onClose={handleCloseModal}
-          onViewOnExplorer={handleViewOnExplorer}
+      {step === 3 && selectedType && (
+        <CreateCommitmentStepReview
+          {...getMockData()}
+          isSubmitting={isSubmitting}
+          onBack={handleBack}
+          onSubmit={handleSubmit}
         />
-      </>
-    )
-  }
-
-  // Render Step 3 - Review & Confirm
-  if (currentStep === 3) {
-    return (
-      <>
-        <main id="main-content" className={styles.container}>
-          <div className={styles.step3Content}>
-            <div className={styles.sectionHeader}>
-              <h2 className={styles.sectionTitle}>Review & Confirm</h2>
-              <p className={styles.sectionSubtitle}>Review your commitment details before submitting</p>
-            </div>
-            <div className={styles.reviewSummary}>
-              <div className={styles.reviewRow}>
-                <span className={styles.reviewLabel}>Commitment Type</span>
-                <span className={styles.reviewValue}>{commitmentType}</span>
-              </div>
-              <div className={styles.reviewRow}>
-                <span className={styles.reviewLabel}>Amount</span>
-                <span className={styles.reviewValue}>{amount} {asset}</span>
-              </div>
-              <div className={styles.reviewRow}>
-                <span className={styles.reviewLabel}>Duration</span>
-                <span className={styles.reviewValue}>{durationDays} days</span>
-              </div>
-              <div className={styles.reviewRow}>
-                <span className={styles.reviewLabel}>Maximum Loss</span>
-                <span className={styles.reviewValue}>{maxLossPercent}%</span>
-              </div>
-              <div className={styles.reviewRow}>
-                <span className={styles.reviewLabel}>Early Exit Penalty</span>
-                <span className={styles.reviewValue}>{earlyExitPenalty}</span>
-              </div>
-              <div className={styles.reviewRow}>
-                <span className={styles.reviewLabel}>Estimated Fees</span>
-                <span className={styles.reviewValue}>{estimatedFees}</span>
-              </div>
-            </div>
-            <div className={styles.step3Actions}>
-              <button
-                type="button"
-                className={styles.backButton}
-                onClick={handleBack}
-              >
-                Back
-              </button>
-              <button
-                type="button"
-                className={styles.submitButton}
-                onClick={handleSubmit}
-              >
-                Create Commitment
-              </button>
-            </div>
-          </div>
-        </main>
-
+        
         <CommitmentCreatedModal
           isOpen={showSuccessModal}
           commitmentId={commitmentId}

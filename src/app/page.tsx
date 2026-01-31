@@ -1,12 +1,15 @@
-import SolutionSection from "@/components/SolutionSection";
-import CommitmentJourney from "@/components/CommitmentJourney/CommitmentJourney";
-import ImpactSection from "@/components/ImpactSection";
-import { HeroSection } from "@/components/landing-page/sections/HeroSection";
-import { ProblemSection } from "@/components/landing-page/sections/ProblemSection";
+import SolutionSection from '@/components/SolutionSection'
+import CommitmentJourney from '@/components/CommitmentJourney/CommitmentJourney'
+import ImpactSection from '@/components/ImpactSection'
+import { HeroSection } from '@/components/landing-page/sections/HeroSection'
+import { ProblemSection } from '@/components/landing-page/sections/ProblemSection'
+import Footer from '@/components/landing-page/Footer'
+import React from 'react'
+import ImpactSection from '@/components/ImpactSection'
+import Footer from '@/components/landing-page/Footer'
+
 import { ExperienceSection } from "@/components/landing-page/sections/ExperienceSection";
 import { Navigation } from "@/components/landing-page/Navigation";
-import { Footer } from "@/components/landing-page/Footer";
-import React from "react";
 
 export default function Home() {
   return (
