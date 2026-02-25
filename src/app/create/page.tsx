@@ -34,6 +34,67 @@ export default function CreateCommitment() {
   const [commitmentId, setCommitmentId] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
 
+  // Mock data based on selected type
+  // TODO: This should be replaced with real-time data fetching from the blockchain
+  // or a backend service that calculates these values based on current market conditions.
+  const getMockData = () => {
+    switch (selectedType) {
+      case 'safe':
+        return {
+          typeLabel: 'Safe Commitment',
+          amount: '500 XLM',
+          asset: 'XLM',
+          durationDays: 30,
+          maxLossPercent: 2,
+          earlyExitPenalty: '5.00 XLM',
+          estimatedFees: '0.10 XLM',
+          estimatedYield: '5.2% APY',
+          commitmentStart: 'Immediately',
+          commitmentEnd: '2/28/2026'
+        };
+      case 'balanced':
+        return {
+          typeLabel: 'Balanced Commitment',
+          amount: '1000 XLM',
+          asset: 'XLM',
+          durationDays: 60,
+          maxLossPercent: 8,
+          earlyExitPenalty: '20.00 XLM',
+          estimatedFees: '0.50 XLM',
+          estimatedYield: '12.5% APY',
+          commitmentStart: 'Immediately',
+          commitmentEnd: '3/30/2026'
+        };
+      case 'aggressive':
+        return {
+          typeLabel: 'Aggressive Commitment',
+          amount: '2000 XLM',
+          asset: 'XLM',
+          durationDays: 90,
+          maxLossPercent: 100, // Should probably handle "No protection" or similar logic in presentation if needed, but number is simpler
+          earlyExitPenalty: '100.00 XLM',
+          estimatedFees: '1.20 XLM',
+          estimatedYield: '45.0% APY',
+          commitmentStart: 'Immediately',
+          commitmentEnd: '4/30/2026'
+        };
+      default:
+        return {
+          typeLabel: 'Unknown',
+          amount: '0 XLM',
+          asset: 'XLM',
+          durationDays: 0,
+          maxLossPercent: 0,
+          earlyExitPenalty: '0 XLM',
+          estimatedFees: '0 XLM',
+          estimatedYield: '0%',
+          commitmentStart: '-',
+          commitmentEnd: '-'
+        };
+    }
+  };
+
+  // Mock available balance - in real app, this would come from wallet/API
   const availableBalance = 10000
 
   // Derived values
@@ -77,6 +138,8 @@ export default function CreateCommitment() {
     }
   }
 
+  // Navigation handlers
+  // Note: These control the wizard step flow
   const handleBack = () => {
     if (step > 1) {
       setStep(step - 1)
