@@ -1,63 +1,29 @@
-import Link from 'next/link'
-import styles from './page.module.css'
+import SolutionSection from "@/components/SolutionSection";
+import CommitmentJourney from "@/components/CommitmentJourney/CommitmentJourney";
+import ImpactSection from "@/components/ImpactSection";
+import { HeroSection } from "@/components/landing-page/sections/HeroSection";
+import { CoreConceptsSection } from "@/components/landing-page/sections/CoreConceptsSection";
+import { ProblemSection } from "@/components/landing-page/sections/ProblemSection";
+import Footer from "@/components/landing-page/Footer";
+import React from "react";
+
+import { ExperienceSection } from "@/components/landing-page/sections/ExperienceSection";
+import { Navigation } from "@/components/landing-page/Navigation";
 
 export default function Home() {
   return (
-    <main className={styles.main}>
-      <div className={styles.container}>
-        <header className={styles.header}>
-          <h1 className={styles.title}>CommitLabs</h1>
-          <p className={styles.subtitle}>
-            Liquidity as a commitment, not a guess.
-          </p>
-        </header>
-
-        <nav className={styles.nav}>
-          <Link href="/create" className={styles.navLink}>
-            Create Commitment
-          </Link>
-          <Link href="/commitments" className={styles.navLink}>
-            My Commitments
-          </Link>
-          <Link href="/marketplace" className={styles.navLink}>
-            Marketplace
-          </Link>
-        </nav>
-
-        <section className={styles.hero}>
-          <h2>Transform Passive Liquidity</h2>
-          <p>
-            Define explicit rules for how your liquidity behaves — including
-            duration, risk tolerance, and exit conditions — and the protocol
-            enforces those rules cryptographically.
-          </p>
-        </section>
-
-        <section className={styles.features}>
-          <div className={styles.featureCard}>
-            <h3>Commitment NFTs</h3>
-            <p>
-              Each commitment is minted as an NFT representing locked capital,
-              commitment parameters, and historical performance.
-            </p>
-          </div>
-          <div className={styles.featureCard}>
-            <h3>On-Chain Attestations</h3>
-            <p>
-              Continuous verification of commitment health: volatility exposure,
-              fee generation, drawdown events, and rule compliance.
-            </p>
-          </div>
-          <div className={styles.featureCard}>
-            <h3>Composable & Reusable</h3>
-            <p>
-              Commitments can be transformed into risk tranches, collateralized
-              assets, and protocol-specific liquidity guarantees.
-            </p>
-          </div>
-        </section>
-      </div>
-    </main>
-  )
+    <div className="min-h-screen w-full bg-[#0a0a0a] overflow-hidden">
+      <Navigation />
+      <main id="main-content">
+        <HeroSection />
+        <ProblemSection />
+        <SolutionSection />
+        <CoreConceptsSection />
+        <CommitmentJourney />
+        <ImpactSection />
+        <ExperienceSection />
+      </main>
+      <Footer />
+    </div>
+  );
 }
-

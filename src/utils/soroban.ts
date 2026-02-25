@@ -1,3 +1,15 @@
+/**
+ * Soroban Utility Functions
+ * 
+ * This module handles all interactions with the Stellar network and Soroban smart contracts.
+ * It uses the @stellar/stellar-sdk and @stellar/freighter-api libraries.
+ * 
+ * CURRENT STATUS:
+ * - Contract addresses are loaded from environment variables.
+ * - Wallet connection and contract interaction functions are placeholders.
+ * - TODO: Implement `connectWallet`, `callContract`, and `readContract` using the SDK.
+ */
+
 // Soroban utility functions and configuration
 // TODO: Implement actual Soroban contract interactions
 
@@ -18,9 +30,9 @@ export async function connectWallet() {
 
 // TODO: Implement contract calls
 export async function callContract(
-  contractAddress: string,
-  functionName: string,
-  args: any[]
+  contractAddress: string, // eslint-disable-line @typescript-eslint/no-unused-vars
+  functionName: string, // eslint-disable-line @typescript-eslint/no-unused-vars
+  args: any[] // eslint-disable-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any
 ) {
   // Placeholder for contract call logic
   throw new Error('Contract calls not implemented')
@@ -28,9 +40,9 @@ export async function callContract(
 
 // TODO: Implement contract reads
 export async function readContract(
-  contractAddress: string,
-  functionName: string,
-  args: any[]
+  contractAddress: string, // eslint-disable-line @typescript-eslint/no-unused-vars
+  functionName: string, // eslint-disable-line @typescript-eslint/no-unused-vars
+  args: any[] // eslint-disable-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any
 ) {
   // Placeholder for contract read logic
   throw new Error('Contract reads not implemented')
