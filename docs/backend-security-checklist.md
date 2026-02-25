@@ -160,5 +160,3 @@ Use this when flagging issues during review:
 | ⚪ **Info** | Observation only — no action required | Minor naming inconsistency |
 
 ---
-
-*This checklist was created as part of issue #141. It should be updated as the project evolves — particularly once wallet integration and contract interaction are implemented.*
