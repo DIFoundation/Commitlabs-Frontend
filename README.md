@@ -46,6 +46,51 @@ The application is built using the **Next.js App Router** architecture.
 
 For a deep dive into the system design, modules, and data flow, please refer to [ARCHITECTURE.md](./ARCHITECTURE.md).
 
+## 🧪 Testing
+
+This project uses **Vitest** for unit and integration testing of API routes.
+
+### Running Tests
+
+```bash
+# Run all tests
+npm test
+
+# Run tests in watch mode (re-runs on file changes)
+npm run test:watch
+
+# Run tests with coverage report
+npm run test:coverage
+```
+
+### Test Structure
+
+Tests are organized in the `tests/` directory:
+
+```
+tests/
+└── api/
+    ├── helpers.ts           # Test utilities and mock request helpers
+    ├── health.test.ts       # Tests for /api/health route
+    └── commitments.test.ts  # Tests for /api/commitments route
+```
+
+### API Routes
+
+- **GET /api/health** - Health check endpoint returning status and version
+- **GET /api/commitments** - Fetch commitments with optional filtering and pagination
+- **POST /api/commitments** - Create a new commitment (mocked for now)
+
+### Test Examples
+
+Tests demonstrate:
+- Mocking Next.js API routes without network requests
+- Testing request/response handling
+- Parameter validation and error handling
+- Mock data without external dependencies
+
+To add new API route tests, create a `.test.ts` file in `tests/api/` following the same pattern.
+
 ## 🔄 Backend API Changelog
 
 Breaking backend API changes are tracked in [docs/backend-changelog.md](./docs/backend-changelog.md). Update this changelog whenever a backend change can break existing frontend integrations.
