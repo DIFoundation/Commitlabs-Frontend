@@ -173,7 +173,6 @@ export function MarketplaceCard({
   owner,
   price,
   forSale,
-  viewHref,
   tradeHref,
 }: MarketplaceCardProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -200,8 +199,6 @@ export function MarketplaceCard({
       ? "bg-[#122238] text-[#51A2FF]"
       : "bg-[#2b1c10] text-[#FF8904]";
 
-  const resolvedViewHref =
-    viewHref ?? `/commitments?id=${encodeURIComponent(id)}`;
   const resolvedTradeHref =
     tradeHref ?? `/marketplace/trade?id=${encodeURIComponent(id)}`;
 
