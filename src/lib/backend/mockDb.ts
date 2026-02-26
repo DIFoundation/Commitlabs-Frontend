@@ -21,6 +21,23 @@ export async function getMockData(): Promise<MockData> {
       listings: [],
     };
   }
+    commitments: unknown[];
+    attestations: unknown[];
+    listings: unknown[];
+}
+
+export async function getMockData(): Promise<MockData> {
+    try {
+        const data = await fs.readFile(mockDbPath, 'utf8');
+        return JSON.parse(data);
+    } catch {
+        // Return empty state if file doesn't exist
+        return {
+            commitments: [],
+            attestations: [],
+            listings: [],
+        };
+    }
 }
 
 export async function setMockData(data: MockData): Promise<void> {
